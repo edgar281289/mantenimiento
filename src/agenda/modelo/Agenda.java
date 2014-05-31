@@ -8,7 +8,7 @@ import java.util.TreeSet;
 public class Agenda implements Iterable<Contacto> {
 	private SortedSet<Contacto> contactos = new TreeSet<Contacto>();
 
-	public void anadeContacto(Contacto c) {
+	public void anadeContacto(Contacto c) {		
 		if (!contactos.add(c)) {
 			throw new IllegalArgumentException(
 					"El contacto ya est‡ en la agenda");

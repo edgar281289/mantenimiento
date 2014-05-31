@@ -1,4 +1,4 @@
-package tests;
+package tests.testsUnidad;
 
 import static org.junit.Assert.*;
 
@@ -129,4 +129,82 @@ public class ContactoTests {
 		
 		assertNotEquals(0,c2.toString());
 	}
+	
+	@Test
+	public void test14(){
+		Contacto c1 = new Contacto();
+		c1.setValor(Campo.NOMBRE, "Antonio");
+		c1.setValor(Campo.APELLIDO, "Paredes");
+		c1.setValor(Campo.EMAIL, "tonyparedes@gmail.com");
+		c1.setValor(Campo.TELEFONO, "639344707");
+		
+		Contacto c2 = new Contacto();
+		c2.setValor(Campo.NOMBRE, "Antonio");
+		c2.setValor(Campo.APELLIDO, "Paredes");
+		c2.setValor(Campo.EMAIL, "tonyparedes@gmail.com");
+		c2.setValor(Campo.TELEFONO, "639344707");
+		
+		assertEquals(c1.hashCode(), c2.hashCode());
+	}
+	
+	@Test
+	public void test15(){
+		Contacto c1 = new Contacto();
+		c1.setValor(Campo.NOMBRE, "Antonio");
+		c1.setValor(Campo.APELLIDO, "Paredes");
+		c1.setValor(Campo.EMAIL, "tonyparedes@gmail.com");
+		c1.setValor(Campo.TELEFONO, "639344707");
+		
+		Contacto c2 = new Contacto();
+		c2.setValor(Campo.NOMBRE, "Antonio");
+		c2.setValor(Campo.APELLIDO, "Paredes");
+		c2.setValor(Campo.EMAIL, "tonyparedes@gmail.com");
+		c2.setValor(Campo.TELEFONO, "154785");
+		
+		assertNotEquals(c1.hashCode(), c2.hashCode());
+	}
+
+	@Test
+	public void test16(){
+		Contacto c1 = new Contacto();
+		c1.setValor(Campo.NOMBRE, "Antonio");
+		c1.setValor(Campo.APELLIDO, "Paredes");
+		c1.setValor(Campo.EMAIL, "tonyparedes@gmail.com");
+		c1.setValor(Campo.TELEFONO, "639344707");
+		
+		Contacto c2 = new Contacto();
+		c2.setValor(Campo.NOMBRE, "Antonio");
+		c2.setValor(Campo.APELLIDO, "Paredes");
+		c2.setValor(Campo.EMAIL, "tonyparedes@gmail.com");
+		c2.setValor(Campo.TELEFONO, "154785");
+		
+		assertFalse(c1.equals(c2));
+	}
+
+	@Test
+	public void test17(){
+		Contacto c1 = new Contacto();
+		c1.setValor(Campo.NOMBRE, "Antonio");
+		c1.setValor(Campo.APELLIDO, "Paredes");
+		c1.setValor(Campo.EMAIL, "tonyparedes@gmail.com");
+		c1.setValor(Campo.TELEFONO, "639344707");
+		
+		Contacto c2 = new Contacto();
+		c2.setValor(Campo.NOMBRE, "Antonio");
+		c2.setValor(Campo.APELLIDO, "Paredes");
+		c2.setValor(Campo.EMAIL, "tonyparedes@gmail.com");
+		c2.setValor(Campo.TELEFONO, "639344707");
+		
+		assertTrue(c1.equals(c2));
+	}
+	
+	@Test(expected = Exception.class)
+	public void test18(){
+		Contacto c1 = new Contacto();
+		c1.setValor(null, "Antonio");
+		c1.setValor(Campo.APELLIDO, "Paredes");
+		c1.setValor(Campo.EMAIL, "tonyparedes@gmail.com");
+		c1.setValor(Campo.TELEFONO, "639344707");
+	}
+
 }
