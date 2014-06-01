@@ -305,4 +305,16 @@ public class AgendaTest {
 		c1.setValor(Campo.TELEFONO, "954785214");
 		a.anadeContacto(c1);
 	}
+	
+	/**
+	 * Borramos un contacto que no existe, no esperamos respuesta
+	 */
+	@Test
+	public void test19(){
+		c1= new Contacto();
+		c1.setValor(null, "Antonio");
+		c1.setValor(Campo.APELLIDO, "Paredes");
+		c1.setValor(Campo.TELEFONO, "954785214");
+		a.borraContacto(c1);
+	}	
 }
