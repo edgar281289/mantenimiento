@@ -48,8 +48,7 @@ public class CasoDeUso1 extends InterfazTests{
 			}				
 
 		};
-		// Preguntar - Prueba sobre el formato de contactos
-		frame.textBox(matcher).requireText(" \n");
+		frame.textBox(matcher).requireText("   Antonio   ParedesantonioParedes@gmail.com 654785421\n");
 	}
 	
 	@Test
@@ -84,7 +83,6 @@ public class CasoDeUso1 extends InterfazTests{
 			}				
 
 		};
-		// Preguntar - Prueba sobre el formato de contactos
 		frame.textBox(matcher).requireText("   Antonio   ParedesantonioParedes@gmail.com 654785421\n");
 	}
 	
@@ -120,7 +118,6 @@ public class CasoDeUso1 extends InterfazTests{
 			}				
 
 		};
-		// Preguntar - Prueba sobre el formato de contactos
 		frame.textBox(matcher).requireText("   Antonio   ParedesantonioParedes@gmail.com 654785421\n");
 	}
 	
@@ -156,10 +153,12 @@ public class CasoDeUso1 extends InterfazTests{
 			}				
 
 		};
-		// Preguntar - Prueba sobre el formato de contactos
 		frame.textBox(matcher).requireText("   Antonio   ParedesantonioParedes@gmail.com 654785421\n");
 	}
 	
+	/**
+	 * Añadimos un contacto solo con su apellido
+	 */
 	@Test
 	public void test5(){
 		
@@ -183,10 +182,12 @@ public class CasoDeUso1 extends InterfazTests{
 			}				
 
 		};
-		// Preguntar - Prueba sobre el formato de contactos
 		frame.textBox(matcher).requireText("             Paredes                    \n");
 	}
 	
+	/**
+	 * Añadimos un contacto solo con su nombre
+	 */
 	@Test
 	public void test6(){
 		
@@ -210,10 +211,12 @@ public class CasoDeUso1 extends InterfazTests{
 			}				
 
 		};
-		// Preguntar - Prueba sobre el formato de contactos
 		frame.textBox(matcher).requireText("   Antonio                              \n");
 	}
 	
+	/**
+	 * Añadimos un contacto solo con su email
+	 */
 	@Test
 	public void test7(){
 		
@@ -237,8 +240,68 @@ public class CasoDeUso1 extends InterfazTests{
 			}				
 
 		};
-		// Preguntar - Prueba sobre el formato de contactos
 		frame.textBox(matcher).requireText("                    antonioParedes@gmail.com          \n");
 	}
-}                   
+	
+	/**
+	 * Añadimos un contacto solo con su telefono
+	 */
+	@Test
+	public void test8(){
+		
+		//Pre Condicion
+		frame.textBox("tfApellido").requireText("");
+		frame.textBox("tfNombre").requireText("");
+		frame.textBox("tfEmail").requireText("");
+		frame.textBox("tfTelefono").requireText("");
+		
+		// Proceso										
+		frame.textBox("tfTelefono").focus();
+		frame.textBox("tfTelefono").setText("654785421");
+		
+		frame.button("bAnade").click();
+		
+		//Post Condicion
+		GenericTypeMatcher<JTextArea> matcher= new GenericTypeMatcher<JTextArea>(JTextArea.class) {
+			@Override
+			protected boolean isMatching(JTextArea component) {
+		      return true;
+			}				
+
+		};
+		frame.textBox(matcher).requireText("                               654785421\n");
+	}
+	
+	/**
+	 * Añadimos un contacto sin datos
+	 * 
+	 * Se deberia de esperar una notificación avisando de que no se puede insertar un contacto vacío
+	 */
+	@Test
+	public void test9(){
+		
+		//Pre Condicion
+		frame.textBox("tfApellido").requireText("");
+		frame.textBox("tfNombre").requireText("");
+		frame.textBox("tfEmail").requireText("");
+		frame.textBox("tfTelefono").requireText("");
+		
+		// Proceso
+		frame.button("bAnade").click();
+		frame.optionPane().requireErrorMessage();
+		
+		//Post Condicion
+		GenericTypeMatcher<JTextArea> matcher= new GenericTypeMatcher<JTextArea>(JTextArea.class) {
+			@Override
+			protected boolean isMatching(JTextArea component) {
+		      return true;
+			}				
+
+		};
+		frame.textBox(matcher).requireText("");
+	}
+	
+	
+}
+
 
